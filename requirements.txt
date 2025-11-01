@@ -1,0 +1,13 @@
+streamlit
+openai
+python-dotenv
+python-docx
+PyPDF2
+matplotlib
+langchain
+chromadb
+tiktoken
+fpdf2
+streamlit-drawable-canvas
+Pillow
+numpy
