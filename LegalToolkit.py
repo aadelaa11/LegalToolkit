@@ -42,7 +42,7 @@ st.markdown("---")
 # Risk & Contract Analysis Functions
 def analyse_contract_formation(claim_reason, evidence_summary, evidence_strength, client):
     prompt = f"""
-You are an Australian contract lawyer. Analyse the facts below to determine if a valid contract likely exists
+You are an Australian lawyer. Analyse the facts below to determine if a valid contract likely exists
 and the probability of recovering the debt pre-litigation.
 
 Assess each of the six essential elements:
@@ -187,7 +187,7 @@ if run_button:
 
         def run_predictive_analysis(claim_amount, claim_reason, state, evidence_summary, client):
             prompt = f"""
-You are a senior Australian legal expert specialising in contract law, debt recovery, and pre-litigation advice.
+You are an Australian legal expert specialising in contract law, debt recovery, and pre-litigation advice.
 
 Based on the following details, produce a **well-structured and concise predictive legal analysis** with professional formatting using clear headings, bullet points, and line spacing between sections.
 
@@ -305,7 +305,7 @@ Avoid merging multiple points into a single paragraph.
             strategic_insights_content = predictive_result.split("## 7. Strategic Insights and Recommendations")[1]
             st.markdown(strategic_insights_content)
 
-# Step 5: Generate Letter
+# Step 5: Generate Letters
 st.markdown("---")
 st.header("Generate Letter of Demand & Legal Analysis Summary")
 
