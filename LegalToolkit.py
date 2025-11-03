@@ -189,7 +189,7 @@ if run_button:
             prompt = f"""
 You are a senior Australian legal expert specialising in contract law, debt recovery, and pre-litigation advice.
 
-Based on the following details, produce a **well-structured, concise, and clear predictive legal analysis** with professional formatting using clear headings, bullet points, and line spacing between sections.
+Based on the following details, produce a **well-structured and concise predictive legal analysis** with professional formatting using clear headings, bullet points, and line spacing between sections.
 
 ---
 FACTS:
@@ -449,39 +449,33 @@ if st.button("Generate Legal Analysis Summary"):
 
 st.markdown("---")
 # Step 6: Interactive Legal Q&A
-st.header("Legal Q&A (Interactive)")
-
-# Ensure predictive results exist
+st.header("Legal Q&A")
 if "predictive_result" not in st.session_state:
     st.info("Run the Predictive Legal Analysis first to provide context for Q&A.")
 else:
-    # Populate full_ai_results with predictive_result if not already done
     if "full_ai_results" not in st.session_state:
         st.session_state["full_ai_results"] = {"predictive_result": st.session_state["predictive_result"]}
 
-    user_question = st.text_input("Enter your legal question about this case:")
+    user_question = st.text_input("Enter your legal question:")
 
     if st.button("Ask AI", key="qa_button"):
         if not user_question.strip():
             st.warning("Please type a question.")
         else:
-            # Initialize Q&A history if not present
             if "qa_history" not in st.session_state:
                 st.session_state["qa_history"] = []
 
             with st.spinner("Generating answer..."):
-                # Combine all AI outputs in context
                 context = "\n\n".join(st.session_state["full_ai_results"].values())
 
                 qa_prompt = f"""
-You are a senior Australian legal expert. Using the context below, answer the user's question concisely.
+You are a senior Australian legal expert. Using the context below, answer the user's question concisely and professionally.
 Context:
 {context}
 
 Question:
 {user_question}
 """
-
                 response = client.chat.completions.create(
                     model="gpt-5",
                     messages=[
@@ -490,11 +484,7 @@ Question:
                     ]
                 )
                 answer = response.choices[0].message.content.strip()
-
-                # Save to history
                 st.session_state["qa_history"].append({"question": user_question, "answer": answer})
-
-    # Display Q&A history
     if "qa_history" in st.session_state and st.session_state["qa_history"]:
         st.markdown("### Response")
         for qa in reversed(st.session_state["qa_history"]):
