@@ -13,7 +13,7 @@ It uses AI-powered models to produce the following:
 
 ## Features
 
-- Automated Letter of Demand drafting generator including the ability to customise tone, negotiation options, or the inclusion of interest/fees specific to the state you are in 
+- Automated Letter of Demand drafting generator including the ability to customise tone, negotiation options, or the inclusion of interest/fees specific to your state jurisdiction 
 - AI Predictive Legal Analysis of claim including strengths/weaknesses and recovery potential  
 - Australian contract law assessment with precedent case references  
 - Downloadable Word document reports for Letter of Demand and Legal Analysis  

@@ -448,8 +448,61 @@ if st.button("Generate Legal Analysis Summary"):
             )
 
 st.markdown("---")
+# Step 6: Interactive Legal Q&A
+st.header("Legal Q&A (Interactive)")
 
-# Step 6: Deadline Calculator
+# Ensure predictive results exist
+if "predictive_result" not in st.session_state:
+    st.info("Run the Predictive Legal Analysis first to provide context for Q&A.")
+else:
+    # Populate full_ai_results with predictive_result if not already done
+    if "full_ai_results" not in st.session_state:
+        st.session_state["full_ai_results"] = {"predictive_result": st.session_state["predictive_result"]}
+
+    user_question = st.text_input("Enter your legal question about this case:")
+
+    if st.button("Ask AI", key="qa_button"):
+        if not user_question.strip():
+            st.warning("Please type a question.")
+        else:
+            # Initialize Q&A history if not present
+            if "qa_history" not in st.session_state:
+                st.session_state["qa_history"] = []
+
+            with st.spinner("Generating answer..."):
+                # Combine all AI outputs in context
+                context = "\n\n".join(st.session_state["full_ai_results"].values())
+
+                qa_prompt = f"""
+You are a senior Australian legal expert. Using the context below, answer the user's question concisely.
+Context:
+{context}
+
+Question:
+{user_question}
+"""
+
+                response = client.chat.completions.create(
+                    model="gpt-5",
+                    messages=[
+                        {"role": "system", "content": "You are a senior Australian lawyer answering questions."},
+                        {"role": "user", "content": qa_prompt}
+                    ]
+                )
+                answer = response.choices[0].message.content.strip()
+
+                # Save to history
+                st.session_state["qa_history"].append({"question": user_question, "answer": answer})
+
+    # Display Q&A history
+    if "qa_history" in st.session_state and st.session_state["qa_history"]:
+        st.markdown("### Response")
+        for qa in reversed(st.session_state["qa_history"]):
+            st.markdown(f"**Q:** {qa['question']}")
+            st.markdown(f"**A:** {qa['answer']}")
+            st.markdown("---")
+
+# Step 7: Deadline Calculator
 st.header("Additional Tools: Response Deadline Calculator")
 
 base_date = st.date_input("Start Date", value=datetime.today())
