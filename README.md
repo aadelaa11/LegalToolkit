@@ -7,6 +7,7 @@ It uses AI-powered models to produce the following:
 - Contract validity assessments
 - Customised demand letters
 - Comprehensive legal analysis summaries
+- AI chat function to ask legal questions specific to your matter
 - Deadline and penalty interest calculations
 
 ---
@@ -16,7 +17,8 @@ It uses AI-powered models to produce the following:
 - Automated Letter of Demand drafting generator including the ability to customise tone, negotiation options, or the inclusion of interest/fees specific to your state jurisdiction 
 - AI Predictive Legal Analysis of claim including strengths/weaknesses and recovery potential  
 - Australian contract law assessment with precedent case references  
-- Downloadable Word document reports for Letter of Demand and Legal Analysis  
+- Downloadable Word document reports for Letter of Demand and Legal Analysis 
+- AI-powered Q&A chatbot function allowing user to ask questions about the documents that have been uploaded or the legal analysis 
 - Integrated deadline calculator to estimate when the debtor is expected to pay the stipulated debt  
 
 
@@ -26,10 +28,8 @@ It uses AI-powered models to produce the following:
 
 
 
-
-
-
 ---
+
 ## Test Cases 
 ### Test Case One - Debt Recovery Claim (No Uploads)
 Steps: 
@@ -42,13 +42,21 @@ Steps:
 3. Select: 
     - Letter Tone: Firm (Intensity 6) 
     - Response Days: 14
+    - State: Victoria
     - Include Interest and Legal Cost Clauses in Demand Letter
-4. Click 'Run Predictive Legal Analysis' 
-5. Expected Outcome: 
-    - Predictive report includes probability ("Pre-litigation Recovery Probability: 60%" and "Litigation Success Probability: 75%")
-6. Click 'Generate Letter of Demand Document' - 'Download .docx'
+4. Check: 
+    - ❌ Offer Payment Plan 
+    - ✅ Suggest Mediation 
+    - ✅ Demand full payment
+5. Click 'Run Predictive Legal Analysis' 
+6. Generate Letter of Demand Document – download .docx 
 7. Expected Outcome: 
+    - Predictive report includes probability ("Pre-litigation Recovery Probability: 60%" and "Litigation Success Probability: 75%")
+8. Click 'Generate Letter of Demand Document' - 'Download .docx'
+9. Expected Outcome: 
     - Letter of Demand Word Document with specified clauses
+10. Ask an AI legal question: 
+   - "If the debtor refuses to pay after 14 days, what should I do as someone who lives in Victoria?"
 
 
 ### Test Case Two - Negotiation and Deadline Caluculator (PDF Upload)
@@ -61,22 +69,24 @@ Steps:
 2. "Upload Evidence"
     - Invoice Extract URL:  
 3. Select: 
-    - Letter Tone: Professional (Intensity 10) 
-    - Response Days: 18 
-4.	Check: 
+    - Letter Tone: Conciliatory (Intensity 3) 
+    - Response Days: 15 
+    - State: Victoria
+4. Check: 
     - ✅ Offer Payment Plan 
     - ✅ Suggest Mediation 
     - ❌ Demand full payment
-5.	Click Generate Letter of Demand Document – download .docx
-6.	Click Run Predictive Legal Analysis (May take 1-2 minutes to generate)
-7.	Scroll to “Response Deadline Calculator” 
+5. Click Run Predictive Legal Analysis (May take 1-2 minutes to generate)
+6. Click Generate Letter of Demand Document – download .docx	
+7. Scroll to “Response Deadline Calculator” 
     - Start Date: today’s date 
     - Days to respond: 18 days 
     - Count weekends: ❌ 
-8.	Expected Outcome: 
+8. Expected Outcome: 
     - Predictive report includes probability (e.g., “Pre-litigation Recovery Probability: 60%” and “Litigation Success Probability: 75%”)
     - Letter of demand document generated successfully and includes all specified clauses 
-
+9. Ask an AI legal question: 
+   - "Is mediation enforcebale under Victorian law in my case if a payment plan does not work?"
 
 ### Test Case Three - Demand Letter Generation and Predictive Legal Analysis (PDF & DOCX Upload)
 Steps: 
@@ -89,22 +99,26 @@ Steps:
     - Invoice Extract URL: 
     - Email Correspondence with Attached Invoice Extract URL:   
 3. Select: 
-    - Letter Tone: Professional (Intensity 10) 
+    - Letter Tone: Professional (Intensity 6) 
     - Response Days: 14 
+    - State: Victoria
     - Include Interest and Legal Cost Clauses in Demand Letter
 4.	Check: 
-    - ❌ Offer Payment Plan 
+    - ✅ Offer Payment Plan 
     - ❌ Suggest Mediation 
     - ✅ Demand full payment
-5.	Click Generate Letter of Demand Document – download .docx
-6.	Click Run Predictive Legal Analysis (May take 1-2 minutes to generate)
+5.	Click Run Predictive Legal Analysis (May take 1-2 minutes to generate)Click 
+6.	Generate Letter of Demand Document – download .docx
 7.	Scroll to “Response Deadline Calculator” 
     - Start Date: today’s date 
     - Days to respond: 14 days 
     - Count weekends: ❌ 
-8.	Expected Outcome: 
+8. Ask an AI legal question: 
+   - "What happens if the debtor ignores the demand letter and does not pay?"
+9. Expected Outcome: 
     - Predictive report includes probability (e.g., “Pre-litigation Recovery Probability: 60%” and “Litigation Success Probability: 75%”) also includes likelihood of a contract being formed as a means to assess the strength of your claim.
     - Letter of demand document generated successfully and includes all specified clauses 
+    - AI gives explanation of next legal steps
 
 ---
 ## Artifacts 
